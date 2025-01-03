@@ -1,9 +1,14 @@
 import { assets, blog_data } from '@/assets/assets'
 import Image from 'next/image'
+import Link from 'next/link'
 
-const BlogItem = ({ title, description, category, image }) => {
+const BlogItem = ({ title, description, category, image, id }) => {
     return (
-        <div className='max-w-[330px] sm:max-w-[300px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000] duration-500 hover:scale-105 transform transition'>
+        <Link
+            href={`/blogs/${id}`}
+            shallow={true}
+            className='cursor-default max-w-[330px] sm:max-w-[300px] bg-white border border-black hover:shadow-[-7px_7px_0px_#000] duration-500 hover:scale-105 transform transition'
+        >
             <Image
                 src={image} alt='blog_pic_1'
                 width={400}
@@ -15,10 +20,13 @@ const BlogItem = ({ title, description, category, image }) => {
             <div className="p-5">
                 <h5 className='mb-2 text-lg font-medium tracking-tight text-gray-900'>{title}</h5>
                 <p
-                    className='mb-3 text-sm tranking-tight text-gray-700'
+                    className='mb-3 text-sm tracking-tight text-gray-700 line-clamp-4'
+                    style={{
+                        WebkitUserModify: 'read-write-plaintext-only',
+                    }}
                 >{description}</p>
                 <div
-                    className='inline-flex items-center pt-2 font-semibold text-center cursor-default duration-300 hover:scale-105 transform transition hover:border-b hover:border-black'
+                    className='inline-flex items-center pt-2 font-semibold text-center duration-300 hover:scale-105 transform transition hover:border-b hover:border-black'
                 >
                     Read More
                     <Image
@@ -29,7 +37,7 @@ const BlogItem = ({ title, description, category, image }) => {
                     />
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
